@@ -12,14 +12,20 @@ export const App = () => {
     if (value.length === 7) {
       const hex = value.slice(0, 1);
       if (hex === "#") {
-        const r = parseInt(value.slice(1, 3), 16);
-        const g = parseInt(value.slice(3, 5), 16);
-        const b = parseInt(value.slice(5, 7), 16);
+        const rStr = value.slice(1, 3);
+        const gStr = value.slice(3, 5);
+        const bStr = value.slice(5, 7);
 
-        setColor(`rgb(${r}, ${g}, ${b})`);
-        console.log(b);
+        const hexRegex = /^[0-9a-fA-F]{2}/;
 
-        if (Number.isNaN(r) || Number.isNaN(g) || Number.isNaN(b)) {
+        if (hexRegex.test(rStr) && hexRegex.test(gStr) && hexRegex.test(bStr)) {
+          const r = parseInt(rStr, 16);
+          const g = parseInt(gStr, 16);
+          const b = parseInt(bStr, 16);
+
+          setColor(`rgb(${r}, ${g}, ${b})`);
+          console.log(color);
+        } else {
           setColor("Ошибка");
         }
       }
